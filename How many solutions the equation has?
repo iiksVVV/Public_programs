@@ -1,0 +1,44 @@
+//
+//  main.c
+//  My_sqare
+//
+//  Created by iiksVVV on 10.06.2021.
+//
+
+#include <stdio.h>
+int a = 0, b = 0, c = 0;
+int d_skrim = 0;
+
+int main() {
+    
+    printf("Введите три числа, коэфициенты, стоящие перед членами квадратного уравнения\n");
+    
+    scanf("%d\n %d\n %d", &a, &b, &c);
+    
+    d_skrim = b^2 - 4*a*c;
+    
+    if (a == 0)
+    {
+        printf("It is not a sqare eqasion\n");
+    }
+    
+    if (a != 0 )
+    {
+        if (d_skrim > 0)
+        {
+            printf("There are two solutions\n");
+        }
+        else if(d_skrim == 0)
+        {
+            printf("There is only one solution\n");
+        }
+        else
+        {
+            printf("There are no solutions\n");
+        }
+    }
+    
+    
+
+    return 0;
+}
