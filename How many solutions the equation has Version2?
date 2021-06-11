@@ -1,0 +1,89 @@
+//
+//  main.c
+//  My _sqare_v2
+//
+//  Created by iiksVVV on 11.06.2021.
+//
+
+#include <stdio.h>
+#include <math.h>
+
+int SolveSqare(double, double, double, double*, double*);
+const int INF_SOL = -1;
+
+int main()
+{
+    printf("This program can solve eqasions\n");
+    printf("Enter three numbers: a, b, c\n");
+    
+    double a = 0, b = 0, c = 0;
+    scanf("%lg %lg %lg", &a, &b, &c);
+    
+    double x1 = 0, x2 = 0;
+    int nRoots = SolveSqare(a, b, c, &x1, &x2);
+    
+    switch(nRoots)
+    {
+        case 0: printf("No roots\n");
+            break;
+            
+        case 1: printf("One root: %lg", x1);
+            break;
+        
+        case 2: printf("Two roots: %lg, %lg", x1, x2);
+            break;
+            
+        case INF_SOL: printf("Infinity of roots");
+            break;
+            
+        default: printf ("main(): ERROR: nRoots = %d\n", nRoots);
+            return 1;
+    }
+    
+    return 0;
+}
+
+    int SolveSqare(double a, double b, double c, double* x1, double* x2)
+{
+        if (a == 0)
+        {
+            printf("It is not a sqare eqasion, but:\n");
+            if (b == 0)
+            {
+                return (c == 0) ? INF_SOL : 0;
+            }
+            else
+            {
+                *x1 = -c / b;
+                return 1;
+            }
+        }
+        
+        else
+        {
+            double Diskriminante = b*b - 4*a*c;
+            
+            if (Diskriminante > 0)
+            {
+                printf("There are two solutions\n");
+                
+                double Sqr_D = sqrt(Diskriminante);
+                
+                *x1 = (-b - Sqr_D) / (2*a);
+                *x2 = (-b + Sqr_D) / (2*a);
+                return 2;
+            }
+            
+            else if(Diskriminante == 0)
+            {
+                printf("There is only one solution:\n");
+                
+                *x1 = *x2 = -b / (2*a);
+                return 1;
+            }
+            else
+            {
+                printf("There are no solutions\n");
+            }
+        }
+    }
